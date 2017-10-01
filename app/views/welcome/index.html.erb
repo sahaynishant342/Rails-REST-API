@@ -1,0 +1,50 @@
+<h2>Examination Dashboard</h2>
+
+<br/>
+
+<div>
+  <p>Following is the list of System Entities with total count for each :-</p>
+  <table>
+    <tr>
+      <th>Index No.</th>
+      <th>Entity Name</th>
+      <th>Total Count</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Question</td>
+      <td><%= @questions_count %></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Answer</td>
+      <td><%= @answers_count %></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>User</td>
+      <td><%= @users_count %></td>
+    </tr>
+  </table>
+</div>
+
+<br/>
+<br/>
+
+<div>
+  <p>Following is the list of Tenants (API Consumers) with API request count for each :-</p>
+  <table>
+    <tr>
+      <th>Tenant ID</th>
+      <th>Tenant Name</th>
+      <th>API Request Count</th>
+    </tr>
+    <% @tenants.each do |tenant|%>
+      <tr>
+        <td><%= tenant.id %></td>
+        <td><%= tenant.name %></td>
+        <td><%= tenant.api_count %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
