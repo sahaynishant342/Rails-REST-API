@@ -38,13 +38,36 @@
       <th>Tenant ID</th>
       <th>Tenant Name</th>
       <th>API Request Count</th>
+      <th>Update</th>
     </tr>
+    <% id = 1 %>
     <% @tenants.each do |tenant|%>
       <tr>
         <td><%= tenant.id %></td>
         <td><%= tenant.name %></td>
-        <td><%= tenant.api_count %></td>
+        <td id="api_count_<%= id %>"><%= tenant.api_count %></td>
+        <td id="<%= id %>" class="updateButton"><button>Refresh Count</button></td>
       </tr>
+      <% id += 1 %>
     <% end %>
   </table>
 </div>
+
+<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="application/javascript">
+  $(".updateButton").on('click', function() {
+      var button_id = this.id;
+      $.ajax({
+          url: '/welcome/fetch_api_count',
+          type: "get",
+          data: { id: button_id },
+          success: function (data) {
+              if (data["api_count"] == "-1") {
+                  console.log("no matching tenant found");
+                  return;
+              }
+              $("#api_count_" + button_id).html(data["api_count"]);
+          }
+      });
+  });
+</script>
