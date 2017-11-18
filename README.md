@@ -1,4 +1,4 @@
-# Rails Engineer Candidate Interview Project
+# Rails Project
 
 This Rails application is a basic skeleton of an app that serves an API about questions and answers. It already includes 4 basic models:
 
